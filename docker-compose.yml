@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://postgres:4905@db:5432/gol_db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: gol_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 4905
+    ports:
+      - "5432:5432"
