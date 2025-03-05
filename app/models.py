@@ -23,6 +23,8 @@ class Voo(db.Model):
         return f"<Voo {self.mercado} - {self.ano}-{self.mes}>"
     
     def calcular_load_factor(self):
-        if self.ask == 0: 
-            return 0
+        if self.rpk is None or self.ask is None:
+            return 0  
         return (self.rpk / self.ask) * 100
+
+        
